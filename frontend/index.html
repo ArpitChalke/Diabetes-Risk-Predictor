@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiaPredict AI — Multi-Model Clinical Screener</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+
+    <main class="container">
+        <header class="header">
+            <div class="badge">ML Clinical Assistant</div>
+            <h1>Diabetes Risk Predictor</h1>
+            <p>Select a machine learning algorithm and enter patient biomarkers for instant diagnostic screening.</p>
+        </header>
+
+        <form id="predictionForm">
+            <!-- Model Switcher -->
+            <section class="model-selector-section">
+                <span class="section-label">1. Choose ML Algorithm</span>
+                <div class="model-cards">
+                    <label class="model-card">
+                        <input type="radio" name="model_type" value="svm" checked>
+                        <div class="card-content">
+                            <span class="model-tag">Default</span>
+                            <h3>SVM</h3>
+                            <p>Linear Support Vector Classifier</p>
+                        </div>
+                    </label>
+
+                    <label class="model-card">
+                        <input type="radio" name="model_type" value="rf">
+                        <div class="card-content">
+                            <span class="model-tag">Ensemble</span>
+                            <h3>Random Forest</h3>
+                            <p>100-Tree Decision Ensemble</p>
+                        </div>
+                    </label>
+
+                    <label class="model-card">
+                        <input type="radio" name="model_type" value="lr">
+                        <div class="card-content">
+                            <span class="model-tag">Linear</span>
+                            <h3>Logistic Regression</h3>
+                            <p>Statistical Odds Classifier</p>
+                        </div>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Patient Inputs -->
+            <section class="inputs-section">
+                <div class="section-header">
+                    <span class="section-label">2. Patient Clinical Parameters</span>
+                    <button type="button" id="fillSampleBtn" class="btn-ghost">Auto-fill Sample</button>
+                </div>
+
+                <div class="grid">
+                    <div class="form-group">
+                        <label for="Pregnancies">Pregnancies</label>
+                        <input type="number" id="Pregnancies" min="0" step="1" placeholder="e.g., 6" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Glucose">Glucose (mg/dL)</label>
+                        <input type="number" id="Glucose" min="0" step="1" placeholder="e.g., 148" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="BloodPressure">Blood Pressure (mm Hg)</label>
+                        <input type="number" id="BloodPressure" min="0" step="1" placeholder="e.g., 72" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SkinThickness">Skin Thickness (mm)</label>
+                        <input type="number" id="SkinThickness" min="0" step="1" placeholder="e.g., 35" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Insulin">Insulin (mu U/ml)</label>
+                        <input type="number" id="Insulin" min="0" step="1" placeholder="e.g., 0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="BMI">BMI (kg/m²)</label>
+                        <input type="number" id="BMI" min="0" step="0.1" placeholder="e.g., 33.6" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function</label>
+                        <input type="number" id="DiabetesPedigreeFunction" min="0" step="0.001" placeholder="e.g., 0.627" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Age">Age (Years)</label>
+                        <input type="number" id="Age" min="1" step="1" placeholder="e.g., 50" required>
+                    </div>
+                </div>
+            </section>
+
+            <button type="submit" id="submitBtn" class="btn-primary">Run Prediction</button>
+        </form>
+
+        <!-- Result Banner -->
+        <div id="resultBox" class="result-box hidden">
+            <div class="result-icon" id="resultIcon"></div>
+            <div class="result-details">
+                <span class="result-model" id="resultModel"></span>
+                <h2 id="resultText"></h2>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
